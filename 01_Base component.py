@@ -16,21 +16,6 @@ def yes_no(question):
             print("please answer yes/no")
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def instructions():
     print()
     print("You will be shown the height, base and width of a shape")
@@ -52,12 +37,13 @@ print()
 played_before = yes_no("Have you played the game before?")
 
 if played_before == "no":
-    instructions()
+    instructions () 
+# Function used to check input is valid
 
 
 def check_rounds():
-    while True: 
-        response = input ("How mnay Questions would you like?")
+    while True:
+        response = input("How many questions would you like: ")
 
         round_error = "please type either <enter> or an integer that is more than 0"
 
@@ -67,40 +53,55 @@ def check_rounds():
 
                 if response < 1:
                     print(round_error)
-                    continue 
+                    continue
 
             except ValueError:
                 print(round_error)
-                continue 
+                continue
 
         return response
 
 
 # Main routine goes here...
 
-rounds_played = 0 
-choose_instruction = "please choose a Shape out of these options (square, rectangle and triangle)"
+rounds_played = 0
+choose_instruction = "please choose a shape between (Square, Triangle and rectangle)"
 
 # Ask user for # of rounds, <enter> for infinite mode
-rounds = check_rounds ()
+rounds = check_rounds()
 
-end_game="no"
+end_game = "no"
 while end_game == "no":
 
-    # start of Game play loop 
-
-    # Round Heading 
+    # Rounds Heading
     print()
-    if rounds == "": 
+    if rounds == "":
         heading = "continues Mode: Round {}".format(rounds_played + 1)
+        print(heading)
+        choose = input("{} or 'xxx' to end: ".format(choose_instruction))
+        if choose == "xxx":
+            break
+
     else:
         heading = "Round {} of {}".format(rounds_played + 1, rounds)
         print(heading)
+        choose = input(choose_instruction)
+        if rounds_played == rounds - 1:
+            end_game = "yes"
 
-    print(heading) 
-    choose = input("{} or 'xxx' to end: ".format(choose_instruction))
+    # rest of loop / game
+    print("you chose {}".format(choose))
 
-    # End game if exit code is typed 
-    if choose == "xxx":
-        break 
- 
+    rounds_played += 1
+
+
+
+
+
+
+
+
+
+
+
+print("Thank you for playing")
